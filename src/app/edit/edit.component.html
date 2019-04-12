@@ -1,0 +1,31 @@
+
+<div class="container"> 
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+      <!-- <mat-form-field floatLabel="never" class="form-element">
+            <input type="text" matInput placeholder={{post._id}} formControlName="id" >
+           <mat-error *ngIf="formGroup.controls['ptitle'].invalid">
+              {{getError('ptitle')}}
+            </mat-error>
+          </mat-form-field>-->
+      <mat-form-field floatLabel="never" class="form-element">
+        <input type="text" matInput placeholder={{post.ptitle}} formControlName="ptitle">
+        <!--<mat-error *ngIf="formGroup.controls['ptitle'].invalid">
+          {{getError('ptitle')}}
+        </mat-error>-->
+      </mat-form-field>
+  
+
+      
+      <mat-form-field floatLabel="never" class="form-element">
+          <textarea matInput placeholder={{post.pdesc}} formControlName="pdesc"></textarea>
+        <!-- <mat-error *ngIf="!formGroup.controls['pdesc'].valid">
+          {{getError('pdesc')}}
+        </mat-error>-->
+      </mat-form-field>
+  
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button"> Updatepost</button>
+      </div>
+  
+    </form>
+  </div>

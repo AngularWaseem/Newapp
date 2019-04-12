@@ -1,0 +1,62 @@
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" (ngSubmit)="onSubmit(firstFormGroup.value)" class="form" >
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="First name" formControlName="firstname" required>
+        </mat-form-field>
+        <div>
+        <mat-form-field>
+            <input matInput placeholder="Last name" formControlName="lastname" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button  matStepperNext class="button" [disabled]="!firstFormGroup.valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit(secondFormGroup.value)" class="form">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="address" required>
+        </mat-form-field>
+        <div>
+        <mat-form-field>
+            <input matInput placeholder="email" formControlName="email" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button  mat-button matStepperNext class="button" [disabled]="!secondFormGroup.valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <form [formGroup]="thirdFormGroup" (ngSubmit)="onSubmit(thirdFormGroup.value)" class="form">
+          <ng-template matStepLabel>Fill out your address</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="UserID" formControlName="userid" required>
+          </mat-form-field>
+          <div>
+          <mat-form-field>
+              <input matInput placeholder="Password" type="password" formControlName="password" required>
+            </mat-form-field>
+          </div>
+  
+        </form>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" class="button" [disabled]="!thirdFormGroup.valid">submit</button>
+      </div>
+    </mat-step>
+    
+  </mat-horizontal-stepper>
+  <div  *ngIf="isValid">
+      <h5 class="text-center text-primary">Registration Successfull</h5>
+    </div>
